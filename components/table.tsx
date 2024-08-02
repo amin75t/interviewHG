@@ -7,25 +7,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-// symbol
-// high
-// Low
-// Sell
-// Buy
-// ChangeRate
 
 export default function CustomTable({ children }: React.PropsWithChildren) {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }}  aria-label="simple table">
+    <TableContainer className=" shadow-lg border rounded-xl " component={Paper}>
+      <Table sx={{ minWidth: 500 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>symbol</TableCell>
-            <TableCell>high</TableCell>
-            <TableCell align="right">Low</TableCell>
-            <TableCell align="right">Sell</TableCell>
-            <TableCell align="right">Buy</TableCell>
-            <TableCell align="right">ChangeRate</TableCell>
+            <TableCell className="text-md font-bold ">symbol</TableCell>
+            <TableCell className="text-md font-bold " align="center">high</TableCell>
+            <TableCell className="text-md font-bold " align="center">Low</TableCell>
+            <TableCell className="text-md font-bold " align="center">Sell</TableCell>
+            <TableCell className="text-md font-bold " align="center">Buy</TableCell>
+            <TableCell className="text-md font-bold " align="center">ChangeRate</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{children}</TableBody>

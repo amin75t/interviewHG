@@ -21,7 +21,7 @@ function createData(
 }
 
 const fetchMarketStats = async (symbol: string) => {
-  const response = await axios.post(`http://localhost:3000/api/proxy`, {
+  const response = await axios.post(`https://interview-hg.vercel.app/api/proxy`, {
     symbol,
   });
   if (response.status !== 200) {

@@ -1,7 +1,7 @@
 "use client";
 import Button from "@mui/material/Button";
 import CustomTable from "@/components/table";
-import { Badge, TableCell, TableRow } from "@mui/material";
+import { Badge, Box, LinearProgress, TableCell, TableRow } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { symbols } from "./data/Symbols-name";
 import axios from "axios";
@@ -77,42 +77,50 @@ export default function Home() {
   };
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="w-1/2 ">
-        <CustomTable>
-          {rows.map((row: any) => {
-            return (
-              <TableRow
-                key={row.Sell}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell
-                  onClick={() => handelClick(row.symbol)}
-                  component="th"
-                  scope="row"
-                >
-                  {row.symbol}
-                </TableCell>
-                <TableCell align="center">{row.Sell}</TableCell>
-                <TableCell align="center">{row.Buy}</TableCell>
-                <TableCell align="center">{row.high}</TableCell>
-                <TableCell align="center">{row.Low}</TableCell>
-                <TableCell align="center">
-                  <Badge
-                    className={`${
-                      row.ChangeRate.includes("-")
-                        ? "bg-red-400"
-                        : "bg-green-400"
-                    } px-2 rounded-xl py-1.5`}
+      {isLoading ? (
+        <Box sx={{ width: "50%" }}>
+          <LinearProgress />
+        </Box>
+      ) : (
+        <>
+          <div className="w-1/2 ">
+            <CustomTable>
+              {rows.map((row: any) => {
+                return (
+                  <TableRow
+                    key={row.Sell}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    {row.ChangeRate}
-                  </Badge>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </CustomTable>
-      </div>
-      <ModalUnstyled open={open} setOpen={setOpen} coinData={coinCliked} />
+                    <TableCell
+                      onClick={() => handelClick(row.symbol)}
+                      component="th"
+                      scope="row"
+                    >
+                      {row.symbol}
+                    </TableCell>
+                    <TableCell align="center">{row.Sell}</TableCell>
+                    <TableCell align="center">{row.Buy}</TableCell>
+                    <TableCell align="center">{row.high}</TableCell>
+                    <TableCell align="center">{row.Low}</TableCell>
+                    <TableCell align="center">
+                      <Badge
+                        className={`${
+                          row.ChangeRate.includes("-")
+                            ? "bg-red-400"
+                            : "bg-green-400"
+                        } px-2 rounded-xl py-1.5`}
+                      >
+                        {row.ChangeRate}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </CustomTable>
+          </div>
+          <ModalUnstyled open={open} setOpen={setOpen} coinData={coinCliked} />
+        </>
+      )}
     </div>
   );
 }
